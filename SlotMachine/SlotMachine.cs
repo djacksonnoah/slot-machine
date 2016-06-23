@@ -14,6 +14,7 @@ namespace SlotMachine
         public int MinimumBet { get; set; }
         public int MaximumBet { get; set; }
         
+        // Slotmachines
 
         private int _currentBet;
         public int CurrentBet
