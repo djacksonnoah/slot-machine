@@ -13,7 +13,7 @@ namespace SlotMachine
         public int IconsPerSlot { get; set; }
         public int MinimumBet { get; set; }
         public int MaximumBet { get; set; }
-        
+
         // Slotmachines
 
         private int _currentBet;
@@ -57,9 +57,18 @@ namespace SlotMachine
         /// </summary>
         public void PullLever()
         {
-            // TODO
-        }
 
+            icons = new int[NumberOfSlots];
+            Random random = new Random();
+            for (int i = 0; i < NumberOfSlots; i++)
+
+            {
+
+                icons[i] = random.Next(IconsPerSlot) + 1;
+            }
+            // TODO
+
+        }
         /// <summary>
         /// Return the results from the slots
         /// </summary>
@@ -67,7 +76,7 @@ namespace SlotMachine
         public int[] GetResults()
         {
             // TODO
-            return null;
+            return icons;
         }
 
         /// <summary>
@@ -78,7 +87,31 @@ namespace SlotMachine
         public int GetPayout()
         {
             // TODO
-            return 0;
+            bool matches = false;
+
+            int tempMatchNumber = icons[0];
+            for (int i = 1; i < NumberOfSlots; i++)
+
+            {
+                if (icons[i] != tempMatchNumber)
+                {
+                    break;
+                }
+
+                if (i == NumberOfSlots - 1)
+
+                {
+                    matches = true;
+                }
+            }
+            if (matches)
+            {
+                return (CurrentBet * tempMatchNumber *NumberOfSlots * 1000);
+            }
+            else
+            {
+                return (0);
+            }
         }
 
 
